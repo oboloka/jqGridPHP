@@ -71,9 +71,9 @@ abstract class jqGrid_DB
 		$q = "INSERT INTO $tblName (" . implode(', ', array_keys($ins)) . ") VALUES (" . implode(', ', $ins) . ")";
 
 		#Special handling for PostgreSQL
-		if($last_insert_id and $this->db_type == 'postgresql')
+		if($last_insert_id and $this->db_type == 'pgsql:')
 		{
-			$q .= ' RETURNING *';
+			$q .= ' RETURNING id';
 		}
 
 		$result = $this->query($q);
@@ -82,7 +82,7 @@ abstract class jqGrid_DB
 		{
 			switch($this->db_type)
 			{
-				case 'postgresql':
+				case 'pgsql:':
 					return array_shift($this->fetch($result));
 					break;
 					
