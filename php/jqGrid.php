@@ -901,7 +901,7 @@ abstract class jqGrid
 			throw new jqGrid_Exception('Table is not defined');
 		}
 	
-		return $this->DB->insert($this->table, $ins, true);
+		return $this->DB->insert($this->table, $ins, true, 'id');
 	}
 
 	/**
@@ -1515,7 +1515,7 @@ $grid.jqGrid($.extend('.jqGrid_Utils::jsonEncode($data['options']).', typeof('.$
 		#Escape wildcards
 		$val = addcslashes($val, '%_');
 
-		$op = ($this->DB->getType() == 'postgresql') ? 'ILIKE' : 'LIKE';
+		$op = ($this->DB->getType() == 'pgsql') ? 'ILIKE' : 'LIKE';
 		
 		return $c['db'] . " $op '%$val%'";
 	}
